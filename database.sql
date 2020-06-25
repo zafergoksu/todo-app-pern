@@ -15,6 +15,3 @@ CREATE TABLE todo(
   PRIMARY KEY (todo_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
-
-
-INSERT INTO users (user_name, user_email, user_password) VALUES ('test', 'test@example.com', 'test');
