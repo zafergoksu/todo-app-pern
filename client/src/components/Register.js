@@ -18,16 +18,13 @@ const Register = ({ setAuth }) => {
         e.preventDefault();
         try {
             const body = { email, password, name };
-            const response = await fetch(
-                '/auth/register',
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-type': 'application/json',
-                    },
-                    body: JSON.stringify(body),
-                }
-            );
+            const response = await fetch('/auth/register', {
+                method: 'POST',
+                headers: {
+                    'Content-type': 'application/json',
+                },
+                body: JSON.stringify(body),
+            });
             const parseRes = await response.json();
 
             if (parseRes.jwtToken) {

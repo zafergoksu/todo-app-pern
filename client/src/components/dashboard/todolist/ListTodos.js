@@ -7,24 +7,24 @@ const ListTodos = ({ allTodos, setTodosChange }) => {
         try {
             const deleteTodo = await fetch(`/users/todos/${id}`, {
                 method: 'DELETE',
-                headers: { 'jwt_token': localStorage.token }
+                headers: { jwt_token: localStorage.token },
             });
-            
-            setTodos(todos.filter(todo => todo.todo_id !== id));
+
+            setTodos(todos.filter((todo) => todo.todo_id !== id));
         } catch (err) {
             console.log(err.message);
         }
-    }
+    };
 
     //const getTodos = async () => {
-        //try {
-            //const response = await fetch('/users/todos');
-            //const jsonData = await response.json();
-            //console.log();
-            //setTodos(jsonData);
-        //} catch (err) {
-            //console.error(err.message);
-        //}
+    //try {
+    //const response = await fetch('/users/todos');
+    //const jsonData = await response.json();
+    //console.log();
+    //setTodos(jsonData);
+    //} catch (err) {
+    //console.error(err.message);
+    //}
     //};
 
     useEffect(() => {
@@ -41,24 +41,31 @@ const ListTodos = ({ allTodos, setTodosChange }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {todos.length !== 0 && todos[0].todo_id !== null && todos.map(todo => {
-                        return (
-                            <tr key={todo.todo_id}>
-                                <td>{todo.description}</td>
-                                <td>
-                                    <EditTodo todo={todo} setTodosChange={setTodosChange} />
-                                </td>
-                                <td>
-                                    <button
-                                        className="btn btn-danger"
-                                        onClick={() => deleteTodo(todo.todo_id)}
-                                    >
-                                        Delete
-                                    </button>
-                                </td>
-                            </tr>
-                        );
-                    })}
+                    {todos.length !== 0 &&
+                        todos[0].todo_id !== null &&
+                        todos.map((todo) => {
+                            return (
+                                <tr key={todo.todo_id}>
+                                    <td>{todo.description}</td>
+                                    <td>
+                                        <EditTodo
+                                            todo={todo}
+                                            setTodosChange={setTodosChange}
+                                        />
+                                    </td>
+                                    <td>
+                                        <button
+                                            className="btn btn-danger"
+                                            onClick={() =>
+                                                deleteTodo(todo.todo_id)
+                                            }
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            );
+                        })}
                 </tbody>
             </table>
         </div>

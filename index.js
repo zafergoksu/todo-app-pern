@@ -1,8 +1,8 @@
-const express = require("express");
+const express = require('express');
 const app = express();
-const cors = require("cors");
-const authRoutes = require("./routes/jwtAuth");
-const dashboardRoutes = require("./routes/dashboard");
+const cors = require('cors');
+const authRoutes = require('./routes/jwtAuth');
+const dashboardRoutes = require('./routes/dashboard');
 const path = require('path');
 //middleware
 
@@ -12,18 +12,17 @@ app.use(cors());
 app.use(express.json());
 //routes
 
-app.use("/auth", authRoutes);
+app.use('/auth', authRoutes);
 
-app.use("/users", dashboardRoutes);
+app.use('/users', dashboardRoutes);
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
     app.get('*', (req, res) => {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-        
     });
 }
 
 app.listen(port, () => {
-  console.log(`Server is starting on port 5000`);
+    console.log(`Server is starting on port 5000`);
 });

@@ -15,17 +15,17 @@ const InputTodo = ({ setTodosChange }) => {
             const response = await fetch('/users/todos', {
                 method: 'POST',
                 headers: myHeaders,
-                body: JSON.stringify(body)
+                body: JSON.stringify(body),
             });
 
             //const response = await axios.post('/todos', body);
             setDescription('');
-            setTodosChange(true); 
+            setTodosChange(true);
             //window.location = '/';
         } catch (err) {
             console.log(err.message);
         }
-    }
+    };
 
     return (
         <div>
